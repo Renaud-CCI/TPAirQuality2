@@ -1,15 +1,18 @@
-import { Text, View } from "react-native";
+import * as React from 'react';
+import { NativeBaseProvider } from 'native-base';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeContainer from './components/Home/HomeContainer';
+import DetailsContainer from './components/Details/DetailsContainer';
 
-export default function Index() {
+const Stack = createStackNavigator();
+
+export default function App() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-    </View>
+    <NativeBaseProvider>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={HomeContainer} />
+          <Stack.Screen name="Details" component={DetailsContainer} />
+        </Stack.Navigator>
+    </NativeBaseProvider>
   );
 }
